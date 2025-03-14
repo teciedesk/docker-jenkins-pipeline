@@ -11,6 +11,10 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 script {
+                    // Remove existing image to avoid conflicts
+                    sh "docker rmi -f $DOCKER_IMAGE:$DOCKER_TAG || true"
+                    
+                    // Build the Docker image
                     sh "docker build -t $DOCKER_IMAGE:$DOCKER_TAG ."
                 }
             }
@@ -31,7 +35,10 @@ pipeline {
             steps {
                 echo 'Deploying container...'
                 script {
+                    // Ensure no existing container is running
                     sh "docker stop my_app || true && docker rm my_app || true"
+                    
+                    // Run the new container
                     sh "docker run -d --name my_app -p 8080:80 $DOCKER_IMAGE:$DOCKER_TAG"
                 }
             }
