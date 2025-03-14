@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "tecie/docker-jenkins-pipeline"
+        DOCKER_IMAGE = "tobiloba993/docker-jenkins-pipeline"
         DOCKER_TAG = "latest"
     }
 
@@ -11,20 +11,16 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 script {
-                    // Remove existing image to avoid conflicts
-                    sh "docker rmi -f $DOCKER_IMAGE:$DOCKER_TAG || true"
-                    
-                    // Build the Docker image
+                    sh "docker pull $DOCKER_IMAGE:$DOCKER_TAG || true"  // Pre-pull existing image to leverage cache
                     sh "docker build -t $DOCKER_IMAGE:$DOCKER_TAG ."
                 }
             }
         }
 
-        stage('Push to Docker Hub') {
+        stage('Push to DockerHub') {
             steps {
-                echo 'Pushing image to Docker Hub...'
                 script {
-                    withDockerRegistry([credentialsId: 'docker-hub-credentials', url: '']) {
+                    withDockerRegistry([credentialsId: 'docker-hub-credentials', url: "https://index.docker.io/v1/"]) {
                         sh "docker push $DOCKER_IMAGE:$DOCKER_TAG"
                     }
                 }
@@ -35,11 +31,18 @@ pipeline {
             steps {
                 echo 'Deploying container...'
                 script {
-                    // Ensure no existing container is running
-                    sh "docker stop my_app || true && docker rm my_app || true"
+                    // Stop and remove existing container if running
+                    sh "docker stop my_app || true"
+                    sh "docker rm my_app || true"
+
+                    // Remove old image if exists
+                    sh "docker rmi -f $DOCKER_IMAGE:$DOCKER_TAG || true"
                     
+                    // Pull the latest image
+                    sh "docker pull $DOCKER_IMAGE:$DOCKER_TAG"
+
                     // Run the new container
-                    sh "docker run -d --name my_app -p 8080:80 $DOCKER_IMAGE:$DOCKER_TAG"
+                    sh "docker run -d --name my_app -p 8081:80 $DOCKER_IMAGE:$DOCKER_TAG"
                 }
             }
         }
