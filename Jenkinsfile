@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "tobiloba993/docker-jenkins-pipeline"
+        DOCKER_IMAGE = "tobiliba993/docker-jenkins-pipeline"
         DOCKER_TAG = "latest"
     }
 
