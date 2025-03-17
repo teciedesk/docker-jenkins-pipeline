@@ -1,61 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TECIE-DESK Support Solution</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f4f7fb;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f9f9f9;
       color: #333;
+    }
+
+    header {
+      background-color: #0d47a1;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
-    }
-    .logo {
-      max-width: 180px;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-size: 2rem;
-      color: #1e3a8a;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      font-size: 1rem;
-      color: #555;
+      height: 80vh;
       text-align: center;
-      margin-bottom: 2rem;
+      padding: 20px;
+      background: linear-gradient(45deg, #0d47a1, #1976d2);
+      color: white;
     }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+
     .btn {
-      padding: 0.75rem 1.5rem;
-      background-color: #1e3a8a;
-      color: #fff;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #ffca28;
+      color: #0d47a1;
       border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s ease;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
+
     .btn:hover {
-      background-color: #0f1e6a;
+      background-color: #ffc107;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #0d47a1;
+      color: white;
     }
   </style>
 </head>
+
 <body>
-  <img src="https://i.imgur.com/Ay5E2Xm.png" alt="TECIE-DESK Logo" class="logo">
-  <h1>Welcome to TECIE-DESK Support Solution</h1>
-  <p>Your trusted partner in providing top-notch technical support solutions.<br>We ensure your business stays connected and efficient.</p>
-  <a href="#" class="btn">Get Support</a>
+  <header>
+    <h1>TECIE-DESK Support Solution</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Your Trusted Tech Support Partner</h2>
+    <p>Providing top-notch technical support solutions tailored to meet the needs of businesses and individuals. Fast, reliable, and professional service at your fingertips.</p>
+    <button class="btn">Get Support</button>
+  </section>
+
+  <footer>
+    &copy; 2025 TECIE-DESK Support Solution. All rights reserved.
+  </footer>
+
 </body>
+
 </html>
