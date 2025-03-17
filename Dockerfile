@@ -1,11 +1,14 @@
-# Use an official Nginx image
-FROM nginx:latest
+# Use official Nginx image
+FROM nginx:alpine
 
-# Copy static files or configuration (adjust as needed)
+# Remove default Nginx website
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy your custom index.html to Nginx web folder
 COPY index.html /usr/share/nginx/html/index.html
 
 # Expose port 80
 EXPOSE 80
 
-# Start Nginx
+# Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
